@@ -540,10 +540,10 @@ struct KeyboardSettingsTab: View {
                     VStack(spacing: 12) {
                         Toggle(isOn: $settings.settings.enableModifierKeys) {
                             VStack(alignment: .leading, spacing: 4) {
-                                Text("Modifier Keys (Not supported, toggle will not work)")
+                                Text("Modifier Keys")
                                     .font(.body)
                                 
-                                Text("Command, Option, Control, Shift")
+                                Text("Command, Option, Control, Shift, Caps Lock, Fn")
                                     .font(.caption)
                                     .foregroundColor(.secondary)
                             }
@@ -554,10 +554,10 @@ struct KeyboardSettingsTab: View {
                         
                         Toggle(isOn: $settings.settings.enableFunctionKeys) {
                             VStack(alignment: .leading, spacing: 4) {
-                                Text("Function Keys (Not supported, toggle will not work)")
+                                Text("Function Keys")
                                     .font(.body)
                                 
-                                Text("F1, F2, F3... F12")
+                                Text("F1 through F12")
                                     .font(.caption)
                                     .foregroundColor(.secondary)
                             }
@@ -700,3 +700,4 @@ struct AdvancedSettingsTab: View {
         NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: soundPacksDir.path)
     }
 }
+

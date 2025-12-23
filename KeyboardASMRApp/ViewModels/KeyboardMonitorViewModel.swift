@@ -23,6 +23,7 @@ class KeyboardMonitorViewModel: ObservableObject {
     private let monitor = KeyboardMonitor.shared
     private let audioEngine = AudioEngine.shared
     private var cancellables = Set<AnyCancellable>()
+    private var pressedKeys = Set<Int>()
     
     var currentSoundPack: SoundPack?
     var settings: AppSettings?
@@ -45,12 +46,24 @@ class KeyboardMonitorViewModel: ObservableObject {
     func stopMonitoring() {
         monitor.stop()
         isMonitoring = false
+        pressedKeys.removeAll()
     }
     
     // Update the handleKeyEvent method in KeyboardMonitorViewModel.swift
 
     private func handleKeyEvent(keyCode: Int, isPress: Bool) {
         guard let pack = currentSoundPack, settings?.isEnabled == true else { return }
+        
+        // Suppress repeats by tracking actual key state
+        if isPress {
+            if pressedKeys.contains(keyCode) {
+                return
+            } else {
+                pressedKeys.insert(keyCode)
+            }
+        } else {
+            pressedKeys.remove(keyCode)
+        }
         
         // Check if key type is enabled
         if KeyMapping.modifierKeys.contains(keyCode) && settings?.enableModifierKeys == false {
@@ -112,3 +125,4 @@ class KeyboardMonitorViewModel: ObservableObject {
         }
     }
 }
+

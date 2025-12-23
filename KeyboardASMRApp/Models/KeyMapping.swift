@@ -19,7 +19,8 @@ struct KeyMapping: Codable {
         62,  // Right Control
         55,  // Left Command
         54,  // Right Command
-        57   // Caps Lock
+        57,  // Caps Lock
+        63   // Fn
     ]
     
     static let functionKeys = [
