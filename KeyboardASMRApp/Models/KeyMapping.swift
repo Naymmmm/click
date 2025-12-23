@@ -1,17 +1,42 @@
 // ============================================================================
 // MARK: - Models/KeyMapping.swift
-// Key code to sound mapping structure
+// CORRECT macOS key codes
 // ============================================================================
 
 import Foundation
 
 struct KeyMapping: Codable {
-    var pressMap: [Int: [String]] = [:]  // keyCode: [sound filenames for variation]
+    var pressMap: [Int: [String]] = [:]
     var releaseMap: [Int: [String]] = [:]
     
-    // Default key groups
-    static let modifierKeys = [56, 58, 59, 61, 62, 60, 55] // Shift, Option, Control, Command
-    static let functionKeys = Array(122...135) // F1-F12
+    // CORRECT macOS key codes
+    static let modifierKeys = [
+        56,  // Left Shift
+        60,  // Right Shift
+        58,  // Left Option
+        61,  // Right Option
+        59,  // Left Control
+        62,  // Right Control
+        55,  // Left Command
+        54,  // Right Command
+        57   // Caps Lock
+    ]
+    
+    static let functionKeys = [
+        122, // F1
+        120, // F2
+        99,  // F3
+        118, // F4
+        96,  // F5
+        97,  // F6
+        98,  // F7
+        100, // F8
+        101, // F9
+        109, // F10
+        103, // F11
+        111  // F12
+    ]
+    
     static let spacebarKey = 49
     
     mutating func setSound(forKey keyCode: Int, press: String?, release: String?) {

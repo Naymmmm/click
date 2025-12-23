@@ -10,7 +10,7 @@ class AudioProcessor {
     
     /// Normalize audio volume to target peak level
     static func normalizeAudio(url: URL, targetPeak: Float = 0.9) throws -> Data {
-        let asset = AVAsset(url: url)
+        let asset = AVURLAsset(url: url)  // ← Changed from AVAsset
         
         // This is a placeholder - full implementation would require AVAudioEngine
         // for actual audio processing and normalization
@@ -20,7 +20,7 @@ class AudioProcessor {
     
     /// Trim silence from start and end of audio file
     static func trimSilence(url: URL, threshold: Float = 0.01) throws -> Data {
-        let asset = AVAsset(url: url)
+        let asset = AVURLAsset(url: url)  // ← Changed from AVAsset
         
         // Placeholder for silence trimming logic
         // Would analyze waveform and trim below threshold
@@ -30,7 +30,7 @@ class AudioProcessor {
     
     /// Get audio duration in seconds
     static func getAudioDuration(url: URL) -> Double {
-        let asset = AVAsset(url: url)
+        let asset = AVURLAsset(url: url)  // ← Changed from AVAsset
         return CMTimeGetSeconds(asset.duration)
     }
     

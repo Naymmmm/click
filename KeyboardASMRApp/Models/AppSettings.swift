@@ -1,9 +1,10 @@
 // ============================================================================
 // MARK: - Models/AppSettings.swift
-// User preferences with persistence
+// User preferences with pitch and spatial audio
 // ============================================================================
 
 import Foundation
+import Combine
 
 class AppSettings: ObservableObject, Codable {
     @Published var masterVolume: Float = 0.7
@@ -15,10 +16,20 @@ class AppSettings: ObservableObject, Codable {
     @Published var reduceVolumeOnRapidTyping: Bool = true
     @Published var customSoundPackDirectory: String = ""
     
+    // NEW: Pitch variation settings
+    @Published var enablePitchVariation: Bool = true
+    @Published var pitchVariationAmount: Float = 0.1 // 0.0 to 1.0 (10% to 100% variation)
+    
+    // NEW: Spatial audio settings
+    @Published var enableSpatialAudio: Bool = false
+    @Published var spatialAudioWidth: Float = 0.5 // 0.0 to 1.0
+    
     enum CodingKeys: String, CodingKey {
         case masterVolume, selectedSoundPackId, isEnabled, launchAtLogin
         case enableModifierKeys, enableFunctionKeys, reduceVolumeOnRapidTyping
         case customSoundPackDirectory
+        case enablePitchVariation, pitchVariationAmount
+        case enableSpatialAudio, spatialAudioWidth
     }
     
     required init(from decoder: Decoder) throws {
@@ -31,6 +42,12 @@ class AppSettings: ObservableObject, Codable {
         enableFunctionKeys = try container.decode(Bool.self, forKey: .enableFunctionKeys)
         reduceVolumeOnRapidTyping = try container.decode(Bool.self, forKey: .reduceVolumeOnRapidTyping)
         customSoundPackDirectory = try container.decode(String.self, forKey: .customSoundPackDirectory)
+        
+        enablePitchVariation = try container.decodeIfPresent(Bool.self, forKey: .enablePitchVariation) ?? true
+        pitchVariationAmount = try container.decodeIfPresent(Float.self, forKey: .pitchVariationAmount) ?? 0.1
+        
+        enableSpatialAudio = try container.decodeIfPresent(Bool.self, forKey: .enableSpatialAudio) ?? false
+        spatialAudioWidth = try container.decodeIfPresent(Float.self, forKey: .spatialAudioWidth) ?? 0.5
     }
     
     func encode(to encoder: Encoder) throws {
@@ -43,6 +60,12 @@ class AppSettings: ObservableObject, Codable {
         try container.encode(enableFunctionKeys, forKey: .enableFunctionKeys)
         try container.encode(reduceVolumeOnRapidTyping, forKey: .reduceVolumeOnRapidTyping)
         try container.encode(customSoundPackDirectory, forKey: .customSoundPackDirectory)
+        
+        try container.encode(enablePitchVariation, forKey: .enablePitchVariation)
+        try container.encode(pitchVariationAmount, forKey: .pitchVariationAmount)
+        
+        try container.encode(enableSpatialAudio, forKey: .enableSpatialAudio)
+        try container.encode(spatialAudioWidth, forKey: .spatialAudioWidth)
     }
     
     init() {}

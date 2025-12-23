@@ -1,3 +1,11 @@
+//
+//  KeyboardMonitorViewModel.swift
+//  KeyboardASMRApp
+//
+//  Created by darwinkernelpanic on 21/12/2025.
+//
+
+
 // ============================================================================
 // MARK: - ViewModels/KeyboardMonitorViewModel.swift
 // Manages keyboard monitoring and sound triggering
@@ -39,6 +47,8 @@ class KeyboardMonitorViewModel: ObservableObject {
         isMonitoring = false
     }
     
+    // Update the handleKeyEvent method in KeyboardMonitorViewModel.swift
+
     private func handleKeyEvent(keyCode: Int, isPress: Bool) {
         guard let pack = currentSoundPack, settings?.isEnabled == true else { return }
         
@@ -65,6 +75,14 @@ class KeyboardMonitorViewModel: ObservableObject {
         var volumeMultiplier: Float = 1.0
         if settings?.reduceVolumeOnRapidTyping == true && typingSpeed > 0.5 {
             volumeMultiplier = 0.6
+        }
+        
+        // Apply settings to audio engine
+        if let settings = settings {
+            audioEngine.enablePitchVariation = settings.enablePitchVariation
+            audioEngine.pitchVariationAmount = settings.pitchVariationAmount
+            audioEngine.enableSpatialAudio = settings.enableSpatialAudio
+            audioEngine.spatialAudioWidth = settings.spatialAudioWidth
         }
         
         // Play appropriate sound
