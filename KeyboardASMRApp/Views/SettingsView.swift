@@ -376,7 +376,7 @@ struct AudioSettingsTab: View {
                                 Text("Enable Pitch Variation")
                                     .font(.body)
                                 
-                                Text("Randomly varies pitch for natural typing sound")
+                                Text("Randomly varies pitch (time-preserving) for natural typing sound")
                                     .font(.caption)
                                     .foregroundColor(.secondary)
                             }
@@ -390,23 +390,23 @@ struct AudioSettingsTab: View {
                         if settings.settings.enablePitchVariation {
                             VStack(alignment: .leading, spacing: 8) {
                                 HStack {
-                                    Text("Variation Amount")
+                                    Text("Random Range (± semitones)")
                                         .font(.subheadline)
                                     Spacer()
-                                    Text("\(Int(settings.settings.pitchVariationAmount * 100))%")
+                                    Text(String(format: "± %.1f st", settings.settings.pitchVariationAmount))
                                         .font(.subheadline)
                                         .foregroundColor(.blue)
                                         .monospacedDigit()
                                 }
                                 
-                                Slider(value: $settings.settings.pitchVariationAmount, in: 0.05...0.3)
+                                Slider(value: $settings.settings.pitchVariationAmount, in: 0.0...6.0, step: 0.1)
                                 
                                 HStack {
                                     Text("Subtle")
                                         .font(.caption)
                                         .foregroundColor(.secondary)
                                     Spacer()
-                                    Text("Extreme")
+                                    Text("Wide")
                                         .font(.caption)
                                         .foregroundColor(.secondary)
                                 }

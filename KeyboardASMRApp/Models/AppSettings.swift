@@ -18,7 +18,7 @@ class AppSettings: ObservableObject, Codable {
     
     // NEW: Pitch variation settings
     @Published var enablePitchVariation: Bool = true
-    @Published var pitchVariationAmount: Float = 0.1 // 0.0 to 1.0 (10% to 100% variation)
+    @Published var pitchVariationAmount: Float = 2.0 // semitone range (±)
     
     // NEW: Spatial audio settings
     @Published var enableSpatialAudio: Bool = false
@@ -44,7 +44,7 @@ class AppSettings: ObservableObject, Codable {
         customSoundPackDirectory = try container.decode(String.self, forKey: .customSoundPackDirectory)
         
         enablePitchVariation = try container.decodeIfPresent(Bool.self, forKey: .enablePitchVariation) ?? true
-        pitchVariationAmount = try container.decodeIfPresent(Float.self, forKey: .pitchVariationAmount) ?? 0.1
+        pitchVariationAmount = try container.decodeIfPresent(Float.self, forKey: .pitchVariationAmount) ?? 2.0
         
         enableSpatialAudio = try container.decodeIfPresent(Bool.self, forKey: .enableSpatialAudio) ?? false
         spatialAudioWidth = try container.decodeIfPresent(Float.self, forKey: .spatialAudioWidth) ?? 0.5
