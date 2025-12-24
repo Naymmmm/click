@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A0DF0E442EFB72840068D1EE /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = A0DF0E432EFB727E0068D1EE /* LICENSE */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		A09370DD2EF815B600880674 /* Click.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Click.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0DF0E432EFB727E0068D1EE /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -56,6 +61,7 @@
 		A09370D42EF815B600880674 = {
 			isa = PBXGroup;
 			children = (
+				A0DF0E432EFB727E0068D1EE /* LICENSE */,
 				A09370DF2EF815B600880674 /* KeyboardASMRApp */,
 				A09370DE2EF815B600880674 /* Products */,
 			);
@@ -133,6 +139,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0DF0E442EFB72840068D1EE /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
